@@ -1,0 +1,30 @@
+// SETTINGS - Variables, mixins, funciones
+@import 'settings/variables';
+@import 'settings/mixins';
+@import 'settings/functions';
+
+// TOOLS - Clases de utilidad y ayudantes
+@import 'tools/reset';
+@import 'tools/utilities';
+
+// BASE - Estilos de elementos base
+@import 'base/typography';
+@import 'base/forms';
+
+// COMPONENTS - Componentes de UI reutilizables (bloques BEM)
+@import 'components/header';
+@import 'components/footer';
+@import 'components/topbar';
+@import 'components/hero-banner';
+@import 'components/product-card';
+@import 'components/product-carousel';
+@import 'components/collections';
+@import 'components/marquee';
+
+// LAYOUT - Componentes de diseño a nivel de página
+@import 'layout/page';
+@import 'layout/grid';
+
+// ANIMATIONS - Animaciones GSAP y CSS
+@import 'animations/transitions';
+@import 'animations/hover-effects';

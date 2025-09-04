@@ -1,7 +1,7 @@
 const express = require('express');
 const { Liquid } = require('liquidjs');
-const path = require('path');
-const fs = require('fs');
+const path = require('node:path');
+const fs = require('node:fs');
 
 const app = express();
 
@@ -25,9 +25,9 @@ const collections = require('./data/collections.json');
 const settings = JSON.parse(fs.readFileSync('./config/settings_data.json', 'utf-8'));
 
 app.get('/', (req, res) => {
-  res.render('index', { 
-    products, 
-    collections, 
+  res.render('index', {
+    products,
+    collections,
     settings: settings.sections
   });
 });

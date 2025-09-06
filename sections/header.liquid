@@ -1,6 +1,10 @@
 <section class="header">
     <div class="header__brand">
-        <img src="https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/all-2/menu-qa3zudrktsmphtfaoddgvb.png/menu-iaoxqnpyjdkokz13yxzrwh.png?_a=DATAg1AAZAA0" width="35px" height="35px">
+        <button class="header__menu-toggle" id="mobile-menu-toggle">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
         <div class="header__logo">{% render 'logo' %}</div>
         <h3 class="movil">SHUFFLE</h3>
         <h2>Store</h2>
@@ -16,8 +20,31 @@
     <div class="header__categories">
         <h5 class="movil"><a href="#products">All Products</a></h5>
         <h5 class="movil"><a href="#collections">Collections</a></h5>
-        <button><img
-        src="https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/all-3/shopping-cart-9xhllmo2cb79djc9j7b5kb.png/shopping-cart-pe974q2wd8bzu5cueg3qr.png?_a=DATAg1AAZAA0"
-        alt="" width="" height=""></button>
+        <button>
+            <img src="https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/all-3/shopping-cart-9xhllmo2cb79djc9j7b5kb.png/shopping-cart-pe974q2wd8bzu5cueg3qr.png?_a=DATAg1AAZAA0" alt="Shopping Cart" width="25" height="25">
+        </button>
     </div>
 </section>
+
+<!-- Mobile Menu -->
+<div class="header__mobile-menu" id="mobile-menu">
+    <div class="mobile-menu__content">
+        <div class="mobile-menu__section">
+            <h4>Navigation</h4>
+            <ul>
+                <li><a href="#products">All Products</a></li>
+                <li><a href="#collections">Collections</a></li>
+            </ul>
+        </div>
+        <div class="mobile-menu__section">
+            <h4>We Accept</h4>
+            <div class="mobile-menu__payment">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/64px-Bitcoin.svg.png?20140331024207" width="25px" height="25px" alt="Bitcoin">
+                <img src="https://cdn.worldvectorlogo.com/logos/ethereum-eth.svg" width="25px" height="25px" alt="Ethereum">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/1c/Litecoin.svg" width="25px" height="25px" alt="Litecoin">
+                <img src="https://cdn-icons-png.flaticon.com/512/825/825445.png" width="25px" height="25px" alt="Paypal">
+                <img src="https://assets.streamlinehq.com/image/private/w_300,h_300,ar_1/f_auto/v1/icons/vectors/usdc-fpxuadmgafrjjy85bgie5.png/usdc-kksfxcrdl3f9pjx0v6jxxp.png?_a=DATAg1AAZAA0" width="25px" height="25px" alt="USDC">
+            </div>
+        </div>
+    </div>
+</div>

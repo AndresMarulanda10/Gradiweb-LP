@@ -9,7 +9,7 @@
     "latest-collection": {
       "type": "latest-collection",
       "settings": {
-        "heading": "Our Featured Products",
+        "heading": "Latest Collection",
         "background_color": "#ffffff"
       },
       "collections": [

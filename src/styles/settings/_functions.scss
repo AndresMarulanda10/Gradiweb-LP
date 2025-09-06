@@ -1,0 +1,100 @@
+// FUNCIONES DE COLOR
+@function hex-to-rgb($color) {
+  @return red($color), green($color), blue($color);
+}
+
+@function alpha($color, $alpha) {
+  @return rgba($color, $alpha);
+}
+
+@function contrast-ratio($color1, $color2) {
+  $luminance1: luminance($color1) + 0.05;
+  $luminance2: luminance($color2) + 0.05;
+
+  @return max($luminance1, $luminance2) / min($luminance1, $luminance2);
+}
+
+@function luminance($color) {
+  $red: red($color) / 255;
+  $green: green($color) / 255;
+  $blue: blue($color) / 255;
+
+  $red: if($red < 0.03928, $red / 12.92, pow(($red + 0.055) / 1.055, 2.4));
+  $green: if($green < 0.03928, $green / 12.92, pow(($green + 0.055) / 1.055, 2.4));
+  $blue: if($blue < 0.03928, $blue / 12.92, pow(($blue + 0.055) / 1.055, 2.4));
+
+  @return 0.2126 * $red + 0.7152 * $green + 0.0722 * $blue;
+}
+
+// FUNCIONES DE TAMAÑO
+@function px-to-rem($pixels, $base-font-size: 16px) {
+  @return $pixels / $base-font-size * 1rem;
+}
+
+@function rem-to-px($rem, $base-font-size: 16px) {
+  @return $rem * $base-font-size;
+}
+
+@function fluid-size($min-size, $max-size, $min-breakpoint: 320px, $max-breakpoint: 1200px) {
+  $slope: ($max-size - $min-size) / ($max-breakpoint - $min-breakpoint);
+  $intersection: -$min-breakpoint * $slope + $min-size;
+
+  @return clamp(
+    #{$min-size},
+    #{$intersection} + #{$slope * 100vw},
+    #{$max-size}
+  );
+}
+
+// FUNCIONES DE ESPACIADO
+@function spacing($step, $base: 1rem, $ratio: 1.5) {
+  @return $base * pow($ratio, $step);
+}
+
+// FUNCIONES DE STRING
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace +
+            str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
+@function to-lower-case($string) {
+  $lower-case-letters: a b c d e f g h i j k l m n o p q r s t u v w x y z;
+  $upper-case-letters: A B C D E F G H I J K L M N O P Q R S T U V W X Y Z;
+
+  @for $i from 1 through length($upper-case-letters) {
+    $string: str-replace($string, nth($upper-case-letters, $i), nth($lower-case-letters, $i));
+  }
+
+  @return $string;
+}
+
+// FUNCIONES DE GRID
+@function grid-width($columns, $total-columns: $grid-columns, $gutter: $grid-gutter) {
+  $percentage: percentage($columns / $total-columns);
+  $gutter-compensation: $gutter * ($total-columns - $columns) / $total-columns;
+
+  @return calc(#{$percentage} - #{$gutter-compensation});
+}
+
+// FUNCIONES DE VALIDACIÓN
+@function is-number($value) {
+  @return type-of($value) == 'number';
+}
+
+@function is-size($value) {
+  @return is-number($value) and index('px' 'em' 'rem' '%' 'vh' 'vw' 'vmin' 'vmax', unit($value)) != null;
+}
+
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}

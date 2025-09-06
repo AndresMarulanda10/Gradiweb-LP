@@ -1,0 +1,37 @@
+.topbar {
+    background-color: rgb(118 44 251);
+
+    &__marquee {
+        display: flex;
+        width: max-content;
+        animation: marquee 20s linear infinite;
+    }
+
+    &__content {
+        display: flex;
+        align-items: center;
+    }
+
+    &__text {
+        padding: 10px;
+        font-weight: 900;
+        text-transform: uppercase;
+    }
+
+    &__icon {
+        height: 15px;
+        width: 15px;
+        margin: 0 10px;
+    }
+
+}
+
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}

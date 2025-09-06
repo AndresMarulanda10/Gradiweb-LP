@@ -1,8 +1,102 @@
-<section class="featured-products">
-  <h2>{{ settings['featured-products'].settings.heading }}</h2>
-  <div class="product-list">
+<section class="featured-products" id="products">
+  <div class="featured-products__product-list">
     {% for product in products %}
-      {% render 'product-card', product: product %}
+      <div class="producto movil" data-index="{{ forloop.index0 }}">
+        {% render 'product-card', product: product %}
+      </div>
+      <div class="desktop">
+        {% render 'product-card', product: product %}
+      </div>
     {% endfor %}
   </div>
+  <div class="featured-products__product-button">
+    <button id="view-all-btn" class="movil">View all</button>
+  </div>
 </section>
+
+<script>
+  /**
+   * Clase ProductListManager
+   * Encapsula la lógica de mostrar y ocultar productos.
+   */
+  class ProductListManager {
+    constructor(productListSelector, buttonSelector, visibleCount = 4) {
+      this.productList = document.querySelector(productListSelector);
+      this.toggleButton = document.getElementById(buttonSelector);
+      this.visibleCount = visibleCount;
+      this.expanded = false;
+
+      if (!this.productList || !this.toggleButton) {
+        throw new Error('Elementos necesarios no fueron encontrados en el DOM.');
+      }
+    }
+
+    /**
+     * Inicializa el manejador de eventos.
+     */
+    init() {
+      this.setInitialState();
+      this.toggleButton.addEventListener('click', () => this.toggleProducts());
+    }
+
+    /**
+     * Configura el estado inicial de la lista de productos.
+     */
+    setInitialState() {
+      this.productCards = this.productList.querySelectorAll('.producto');
+      this.productCards.forEach((card, idx) => {
+        card.style.display = idx < this.visibleCount ? 'block' : 'none';
+      });
+      this.productList.style.flexWrap = 'nowrap';
+    }
+
+    /**
+     * Alterna la visibilidad de los productos.
+     */
+    toggleProducts() {
+      try {
+        if (this.expanded) {
+          this.hideExtraProducts();
+        } else {
+          this.showAllProducts();
+        }
+      } catch (error) {
+        console.error('Error al alternar productos:', error);
+      }
+    }
+
+    /**
+     * Muestra todos los productos.
+     */
+    showAllProducts() {
+      this.productCards.forEach(card => {
+        card.style.display = 'block';
+      });
+      this.productList.style.flexWrap = 'wrap';
+      this.toggleButton.textContent = 'View less';
+      this.expanded = true;
+    }
+
+    /**
+     * Oculta los productos adicionales.
+     */
+    hideExtraProducts() {
+      this.productCards.forEach((card, idx) => {
+        card.style.display = idx < this.visibleCount ? 'block' : 'none';
+      });
+      this.productList.style.flexWrap = 'nowrap';
+      this.toggleButton.textContent = 'View all';
+      this.expanded = false;
+    }
+  }
+
+  // Inicializamos el manejador una vez que el DOM se encuentre cargado.
+  document.addEventListener('DOMContentLoaded', () => {
+    try {
+      const productManager = new ProductListManager('.featured-products__product-list', 'view-all-btn');
+      productManager.init();
+    } catch (error) {
+      console.error('Error inicializando ProductListManager:', error);
+    }
+  });
+</script>

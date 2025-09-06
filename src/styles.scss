@@ -1,0 +1,39 @@
+// ==========================================================================
+// MAIN STYLESHEET
+// ==========================================================================
+// Following BEM methodology and SCSS 7-1 architecture pattern
+
+// 1. Settings - Variables FIRST (they need to be available to everything else)
+@import 'styles/settings/variables';
+
+// 2. Settings - Functions and Mixins (can use variables)
+@import 'styles/settings/functions';
+@import 'styles/settings/mixins';
+
+// 3. Tools (can use variables and mixins)
+@import 'styles/tools/reset';
+@import 'styles/tools/utilities';
+
+// 4. Base (can use everything above)
+@import 'styles/base/base';
+@import 'styles/base/typography';
+
+// 5. Layout
+@import 'styles/layout/grid';
+@import 'styles/layout/page';
+
+// 6. Components
+@import 'styles/components/topbar';
+@import 'styles/components/header';
+@import 'styles/components/hero-banner';
+@import 'styles/components/featured-products';
+@import 'styles/components/latest-collection';
+@import 'styles/components/collections';
+@import 'styles/components/product-card';
+@import 'styles/components/product-carousel';
+@import 'styles/components/footer';
+@import 'styles/components/footer-logo';
+
+// 7. Animations
+@import 'styles/animations/transitions';
+@import 'styles/animations/hover-effects';

@@ -1,0 +1,68 @@
+// ==========================================================================
+// VARIABLES
+// ==========================================================================
+
+// Colors
+// --------------------------------------------------------------------------
+$primary-color: rgb(118, 44, 251);
+$secondary-color: rgba(163, 148, 239, 0.6);
+$tertiary-color: rgba(133, 111, 252, 0.6);
+$background-color: rgb(23, 23, 23);
+$text-color: white;
+$black: black;
+
+// Gradients
+// --------------------------------------------------------------------------
+$primary-gradient: linear-gradient(90deg, rgba(118, 44, 251, .6), rgba(163, 148, 239, .6), rgba(133, 111, 252, .6));
+$primary-gradient-solid: linear-gradient(90deg, #762cfb, #a394ef, #856ffc);
+
+// Spacing
+// --------------------------------------------------------------------------
+$spacing-xs: 5px;
+$spacing-sm: 10px;
+$spacing-md: 15px;
+$spacing-lg: 20px;
+$spacing-xl: 32px;
+$spacing-xxl: 40px;
+
+// Typography
+// --------------------------------------------------------------------------
+$font-family-regular: 'regular', Arial, sans-serif;
+$font-family-bold: 'bold', Arial, sans-serif;
+
+$font-size-xs: 12px;
+$font-size-sm: 16px;
+$font-size-md: 24px;
+$font-size-lg: 32px;
+$font-size-xl: 88px;
+
+// Layout
+// --------------------------------------------------------------------------
+$max-width: 1450px;
+$border-radius: 5px;
+$border-radius-lg: 30px;
+
+// Breakpoints
+// --------------------------------------------------------------------------
+$mobile-max: 767px;
+
+// Breakpoints map for mixins
+$breakpoints: (
+  'xs': 0,
+  'sm': 576px,
+  'md': 768px,
+  'lg': 992px,
+  'xl': 1200px,
+  'xxl': 1400px
+);
+
+// Z-index
+// --------------------------------------------------------------------------
+$z-overlay: 900;
+$z-header: 1000;
+$z-mobile-menu: 1100;
+
+// Animation
+// --------------------------------------------------------------------------
+$transition-duration: 0.5s;
+$transition-easing: ease;

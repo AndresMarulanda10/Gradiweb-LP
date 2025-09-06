@@ -1,0 +1,81 @@
+.product-card {
+    max-width: 328px;
+    animation: fadeScaleIn 1s ease forwards;
+
+    &__image-border {
+        position: relative;
+        background: linear-gradient(90deg, rgba(118, 44, 251, .6), rgba(163, 148, 239, .6), rgba(133, 111, 252, .6));
+        padding: 5px;
+        border-radius: 5px;
+
+        &:hover {
+            background: linear-gradient(90deg, #762cfb, #a394ef, #856ffc);
+        }
+    }
+
+    &__image-border-container {
+        height: 407px;
+        overflow: hidden;
+        border-radius: 5px;
+
+        img {
+            display: block;
+            aspect-ratio: 4 / 5;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &__info {
+        margin: 15px auto;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__info-image {
+        width: 48px;
+        height: 48px;
+        background-color: rgb(118 44 251);
+        border-radius: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            width: 60%;
+            height: 60%;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+
+        &:hover {
+            transition: transform 0.5s ease;
+            transform: translateY(-3px);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+    }
+
+    &__tag-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    &__tag {
+        display: inline-block;
+        padding: 6px 12px;
+        background-color: rgb(118 44 251);
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    &__tag:hover {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+
+    &:hover &__image-border-container img {
+        transition: transform 0.5s ease;
+        transform: scale(1.2);
+    }
+}

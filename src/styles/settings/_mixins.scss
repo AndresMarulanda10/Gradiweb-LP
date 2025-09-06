@@ -1,0 +1,258 @@
+// ==========================================================================
+// MIXINS
+// ==========================================================================
+
+// RESPONSIVE MIXINS
+// --------------------------------------------------------------------------
+@mixin respond-to($breakpoint) {
+  $value: map-get($breakpoints, $breakpoint);
+
+  @if $value {
+    @media (min-width: $value) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint `#{$breakpoint}` not found in $breakpoints map.";
+  }
+}
+
+@mixin respond-below($breakpoint) {
+  $value: map-get($breakpoints, $breakpoint);
+
+  @if $value {
+    @media (max-width: #{($value - 1px)}) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint `#{$breakpoint}` not found in $breakpoints map.";
+  }
+}
+
+@mixin respond-between($min-breakpoint, $max-breakpoint) {
+  $min: map-get($breakpoints, $min-breakpoint);
+  $max: map-get($breakpoints, $max-breakpoint);
+
+  @if $min and $max {
+    @media (min-width: $min) and (max-width: #{($max - 1px)}) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoints not found in $breakpoints map.";
+  }
+}
+
+// LAYOUT MIXINS
+// --------------------------------------------------------------------------
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin container($max-width: $max-width) {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+
+  @include respond-to('lg') {
+    padding: 0 $spacing-lg;
+  }
+}
+
+// ANIMATION MIXINS
+// --------------------------------------------------------------------------
+@mixin transition($properties: all, $duration: $transition-duration, $easing: $transition-easing) {
+  transition: $properties $duration $easing;
+}
+
+@mixin hover-lift($distance: 5px, $shadow: 0 5px 15px rgba(0, 0, 0, 0.3)) {
+  transition: transform $transition-duration $transition-easing,
+              box-shadow $transition-duration $transition-easing;
+
+  &:hover {
+    transform: translateY(-#{$distance});
+    box-shadow: $shadow;
+  }
+}
+
+@mixin fade-in($duration: $transition-duration) {
+  opacity: 0;
+  animation: fadeIn $duration $transition-easing forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@mixin slide-in-up($distance: 30px, $duration: $transition-duration) {
+  opacity: 0;
+  transform: translateY($distance);
+  animation: slideInUp $duration $transition-easing forwards;
+}
+
+@keyframes slideInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// TYPOGRAPHY MIXINS
+// --------------------------------------------------------------------------
+@mixin heading($size: 'lg', $weight: bold) {
+  font-family: $font-family-bold;
+  font-weight: $weight;
+  line-height: 1.2;
+
+  @if $size == 'xs' {
+    font-size: $font-size-sm;
+  } @else if $size == 'sm' {
+    font-size: $font-size-md;
+  } @else if $size == 'md' {
+    font-size: $font-size-lg;
+  } @else if $size == 'lg' {
+    font-size: $font-size-xl;
+  } @else if $size == 'xl' {
+    font-size: $font-size-xl;
+  } @else if $size == '2xl' {
+    font-size: $font-size-xl;
+  }
+}
+
+@mixin text-gradient($from: $primary-color, $to: $secondary-color) {
+  background: linear-gradient(135deg, $from, $to);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@mixin truncate {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@mixin line-clamp($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// BUTTON MIXINS
+// --------------------------------------------------------------------------
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  padding: $spacing-sm $spacing-lg;
+  border: none;
+  border-radius: $border-radius;
+  font-family: $font-family-bold;
+  font-size: $font-size-sm;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  transition: $transition-duration $transition-easing;
+  user-select: none;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+@mixin button-primary {
+  @include button-base;
+  background: $primary-gradient-solid;
+  color: $text-color;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+@mixin button-secondary {
+  @include button-base;
+  background: transparent;
+  color: $text-color;
+  border: 2px solid $primary-color;
+
+  &:hover:not(:disabled) {
+    background: $primary-color;
+    color: $text-color;
+  }
+}
+
+// UTILITY MIXINS
+// --------------------------------------------------------------------------
+@mixin visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+@mixin focus-ring($color: $primary-color, $width: 2px) {
+  outline: $width solid $color;
+  outline-offset: 2px;
+}
+
+@mixin aspect-ratio($width, $height) {
+  aspect-ratio: $width / $height;
+
+  // Fallback para navegadores que no soportan aspect-ratio
+  @supports not (aspect-ratio: 1) {
+    &::before {
+      content: '';
+      display: block;
+      width: 100%;
+      padding-top: percentage($height / $width);
+    }
+
+    > * {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+@mixin glass-effect($opacity: 0.1) {
+  background: rgba(255, 255, 255, $opacity);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}

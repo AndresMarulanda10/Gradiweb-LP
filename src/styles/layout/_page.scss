@@ -1,0 +1,16 @@
+// ==========================================================================
+// PAGE LAYOUT
+// ==========================================================================
+// Page-level layout and structure
+
+.page-header {
+  position: sticky;
+  top: 0;
+  z-index: $z-header;
+  overflow: hidden;
+}
+
+.page-content {
+  max-width: $max-width;
+  margin: 0 auto;
+}

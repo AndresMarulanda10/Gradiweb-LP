@@ -1,30 +1,39 @@
-// SETTINGS - Variables, mixins, funciones
-@import 'settings/variables';
-@import 'settings/mixins';
-@import 'settings/functions';
+// ==========================================================================
+// MAIN STYLESHEET
+// ==========================================================================
+// Following BEM methodology and SCSS 7-1 architecture pattern
 
-// TOOLS - Clases de utilidad y ayudantes
-@import 'tools/reset';
-@import 'tools/utilities';
+// 1. Settings - Variables FIRST (they need to be available to everything else)
+@import 'styles/settings/variables';
 
-// BASE - Estilos de elementos base
-@import 'base/typography';
-@import 'base/forms';
+// 2. Settings - Functions and Mixins (can use variables)
+@import 'styles/settings/functions';
+@import 'styles/settings/mixins';
 
-// COMPONENTS - Componentes de UI reutilizables (bloques BEM)
-@import 'components/header';
-@import 'components/footer';
-@import 'components/topbar';
-@import 'components/hero-banner';
-@import 'components/product-card';
-@import 'components/product-carousel';
-@import 'components/collections';
-@import 'components/marquee';
+// 3. Tools (can use variables and mixins)
+@import 'styles/tools/reset';
+@import 'styles/tools/utilities';
 
-// LAYOUT - Componentes de diseño a nivel de página
-@import 'layout/page';
-@import 'layout/grid';
+// 4. Base (can use everything above)
+@import 'styles/base/base';
+@import 'styles/base/typography';
 
-// ANIMATIONS - Animaciones GSAP y CSS
-@import 'animations/transitions';
-@import 'animations/hover-effects';
+// 5. Layout
+@import 'styles/layout/grid';
+@import 'styles/layout/page';
+
+// 6. Components
+@import 'styles/components/topbar';
+@import 'styles/components/header';
+@import 'styles/components/hero-banner';
+@import 'styles/components/featured-products';
+@import 'styles/components/latest-collection';
+@import 'styles/components/collections';
+@import 'styles/components/product-card';
+@import 'styles/components/product-carousel';
+@import 'styles/components/footer';
+@import 'styles/components/footer-logo';
+
+// 7. Animations
+@import 'styles/animations/transitions';
+@import 'styles/animations/hover-effects';

@@ -1,4 +1,9 @@
+// ==========================================================================
+// MIXINS
+// ==========================================================================
+
 // RESPONSIVE MIXINS
+// --------------------------------------------------------------------------
 @mixin respond-to($breakpoint) {
   $value: map-get($breakpoints, $breakpoint);
 
@@ -37,6 +42,7 @@
 }
 
 // LAYOUT MIXINS
+// --------------------------------------------------------------------------
 @mixin flex-center {
   display: flex;
   align-items: center;
@@ -61,24 +67,25 @@
   transform: translate(-50%, -50%);
 }
 
-@mixin container($max-width: var(--container-xl)) {
+@mixin container($max-width: $max-width) {
   max-width: $max-width;
   margin: 0 auto;
-  padding: 0 var(--space-md);
+  padding: 0 $spacing-md;
 
   @include respond-to('lg') {
-    padding: 0 var(--space-lg);
+    padding: 0 $spacing-lg;
   }
 }
 
 // ANIMATION MIXINS
-@mixin transition($properties: all, $duration: var(--duration-normal), $easing: var(--ease-out)) {
+// --------------------------------------------------------------------------
+@mixin transition($properties: all, $duration: $transition-duration, $easing: $transition-easing) {
   transition: $properties $duration $easing;
 }
 
-@mixin hover-lift($distance: 5px, $shadow: var(--shadow-lg)) {
-  transition: transform var(--duration-normal) var(--ease-out),
-              box-shadow var(--duration-normal) var(--ease-out);
+@mixin hover-lift($distance: 5px, $shadow: 0 5px 15px rgba(0, 0, 0, 0.3)) {
+  transition: transform $transition-duration $transition-easing,
+              box-shadow $transition-duration $transition-easing;
 
   &:hover {
     transform: translateY(-#{$distance});
@@ -86,9 +93,9 @@
   }
 }
 
-@mixin fade-in($duration: var(--duration-normal)) {
+@mixin fade-in($duration: $transition-duration) {
   opacity: 0;
-  animation: fadeIn $duration var(--ease-out) forwards;
+  animation: fadeIn $duration $transition-easing forwards;
 }
 
 @keyframes fadeIn {
@@ -97,10 +104,10 @@
   }
 }
 
-@mixin slide-in-up($distance: 30px, $duration: var(--duration-normal)) {
+@mixin slide-in-up($distance: 30px, $duration: $transition-duration) {
   opacity: 0;
   transform: translateY($distance);
-  animation: slideInUp $duration var(--ease-out) forwards;
+  animation: slideInUp $duration $transition-easing forwards;
 }
 
 @keyframes slideInUp {
@@ -111,27 +118,28 @@
 }
 
 // TYPOGRAPHY MIXINS
-@mixin heading($size: 'lg', $weight: var(--font-semibold)) {
-  font-family: var(--font-primary);
+// --------------------------------------------------------------------------
+@mixin heading($size: 'lg', $weight: bold) {
+  font-family: $font-family-bold;
   font-weight: $weight;
-  line-height: var(--line-height-tight);
+  line-height: 1.2;
 
   @if $size == 'xs' {
-    font-size: var(--font-lg);
+    font-size: $font-size-sm;
   } @else if $size == 'sm' {
-    font-size: var(--font-xl);
+    font-size: $font-size-md;
   } @else if $size == 'md' {
-    font-size: var(--font-2xl);
+    font-size: $font-size-lg;
   } @else if $size == 'lg' {
-    font-size: var(--font-3xl);
+    font-size: $font-size-xl;
   } @else if $size == 'xl' {
-    font-size: var(--font-4xl);
+    font-size: $font-size-xl;
   } @else if $size == '2xl' {
-    font-size: var(--font-5xl);
+    font-size: $font-size-xl;
   }
 }
 
-@mixin text-gradient($from: var(--primary-color), $to: var(--secondary-color)) {
+@mixin text-gradient($from: $primary-color, $to: $secondary-color) {
   background: linear-gradient(135deg, $from, $to);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -152,20 +160,21 @@
 }
 
 // BUTTON MIXINS
+// --------------------------------------------------------------------------
 @mixin button-base {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-sm);
-  padding: var(--space-sm) var(--space-lg);
+  gap: $spacing-sm;
+  padding: $spacing-sm $spacing-lg;
   border: none;
-  border-radius: var(--radius-md);
-  font-family: var(--font-primary);
-  font-size: var(--font-base);
-  font-weight: var(--font-medium);
+  border-radius: $border-radius;
+  font-family: $font-family-bold;
+  font-size: $font-size-sm;
+  font-weight: bold;
   text-decoration: none;
   cursor: pointer;
-  transition: var(--transition-normal);
+  transition: $transition-duration $transition-easing;
   user-select: none;
 
   &:disabled {
@@ -176,12 +185,12 @@
 
 @mixin button-primary {
   @include button-base;
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-  color: var(--text-white);
+  background: $primary-gradient-solid;
+  color: $text-color;
 
   &:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   }
 
   &:active {
@@ -192,16 +201,17 @@
 @mixin button-secondary {
   @include button-base;
   background: transparent;
-  color: var(--text-dark);
-  border: 2px solid var(--primary-color);
+  color: $text-color;
+  border: 2px solid $primary-color;
 
   &:hover:not(:disabled) {
-    background: var(--primary-color);
-    color: var(--text-white);
+    background: $primary-color;
+    color: $text-color;
   }
 }
 
 // UTILITY MIXINS
+// --------------------------------------------------------------------------
 @mixin visually-hidden {
   position: absolute !important;
   width: 1px !important;
@@ -214,7 +224,7 @@
   border: 0 !important;
 }
 
-@mixin focus-ring($color: var(--primary-color), $width: 2px) {
+@mixin focus-ring($color: $primary-color, $width: 2px) {
   outline: $width solid $color;
   outline-offset: 2px;
 }

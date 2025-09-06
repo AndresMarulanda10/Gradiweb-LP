@@ -96,3 +96,6 @@ dist
 .svelte-kit
 
 .DS_Store
+public/main.js
+public/vendors.js
+public/*.css

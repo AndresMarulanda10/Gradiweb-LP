@@ -1,0 +1,32 @@
+// ==========================================================================
+// HOVER EFFECTS
+// ==========================================================================
+// Hover animations and interactive effects
+
+.hover-lift {
+  @include hover-lift(5px);
+}
+
+.hover-scale {
+  transition: transform $transition-duration $transition-easing;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.hover-fade {
+  transition: opacity $transition-duration $transition-easing;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.hover-glow {
+  transition: box-shadow $transition-duration $transition-easing;
+
+  &:hover {
+    box-shadow: 0 0 20px rgba(118, 44, 251, 0.5);
+  }
+}

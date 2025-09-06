@@ -1,17 +1,12 @@
+// ==========================================================================
+// UTILITIES
+// ==========================================================================
+// Utility classes for common styling patterns
+
 // LAYOUT UTILITIES
+// --------------------------------------------------------------------------
 .container {
   @include container;
-
-  &--sm { @include container(var(--container-sm)); }
-  &--md { @include container(var(--container-md)); }
-  &--lg { @include container(var(--container-lg)); }
-  &--xl { @include container(var(--container-xl)); }
-  &--2xl { @include container(var(--container-2xl)); }
-
-  &--fluid {
-    max-width: none;
-    width: 100%;
-  }
 }
 
 .d-none { display: none !important; }
@@ -21,6 +16,169 @@
 .d-flex { display: flex !important; }
 .d-inline-flex { display: inline-flex !important; }
 .d-grid { display: grid !important; }
+
+.flex {
+  display: flex;
+
+  &--row { flex-direction: row; }
+  &--row-reverse { flex-direction: row-reverse; }
+  &--column { flex-direction: column; }
+  &--column-reverse { flex-direction: column-reverse; }
+
+  &--wrap { flex-wrap: wrap; }
+  &--nowrap { flex-wrap: nowrap; }
+  &--wrap-reverse { flex-wrap: wrap-reverse; }
+
+  &--justify-start { justify-content: flex-start; }
+  &--justify-end { justify-content: flex-end; }
+  &--justify-center { justify-content: center; }
+  &--justify-between { justify-content: space-between; }
+  &--justify-around { justify-content: space-around; }
+  &--justify-evenly { justify-content: space-evenly; }
+
+  &--items-start { align-items: flex-start; }
+  &--items-end { align-items: flex-end; }
+  &--items-center { align-items: center; }
+  &--items-baseline { align-items: baseline; }
+  &--items-stretch { align-items: stretch; }
+
+  &--self-auto { align-self: auto; }
+  &--self-start { align-self: flex-start; }
+  &--self-end { align-self: flex-end; }
+  &--self-center { align-self: center; }
+  &--self-baseline { align-self: baseline; }
+  &--self-stretch { align-self: stretch; }
+}
+
+.grid {
+  display: grid;
+
+  &--cols-1 { grid-template-columns: repeat(1, 1fr); }
+  &--cols-2 { grid-template-columns: repeat(2, 1fr); }
+  &--cols-3 { grid-template-columns: repeat(3, 1fr); }
+  &--cols-4 { grid-template-columns: repeat(4, 1fr); }
+  &--cols-5 { grid-template-columns: repeat(5, 1fr); }
+  &--cols-6 { grid-template-columns: repeat(6, 1fr); }
+  &--cols-12 { grid-template-columns: repeat(12, 1fr); }
+
+  &--gap-xs { gap: $spacing-xs; }
+  &--gap-sm { gap: $spacing-sm; }
+  &--gap-md { gap: $spacing-md; }
+  &--gap-lg { gap: $spacing-lg; }
+  &--gap-xl { gap: $spacing-xl; }
+  &--gap-2xl { gap: $spacing-xxl; }
+}
+
+.position {
+  &--static { position: static !important; }
+  &--relative { position: relative !important; }
+  &--absolute { position: absolute !important; }
+  &--fixed { position: fixed !important; }
+  &--sticky { position: sticky !important; }
+}
+
+// SPACING UTILITIES
+// --------------------------------------------------------------------------
+.m {
+  &-0 { margin: 0 !important; }
+  &-xs { margin: $spacing-xs !important; }
+  &-sm { margin: $spacing-sm !important; }
+  &-md { margin: $spacing-md !important; }
+  &-lg { margin: $spacing-lg !important; }
+  &-xl { margin: $spacing-xl !important; }
+  &-xxl { margin: $spacing-xxl !important; }
+  &-auto { margin: auto !important; }
+}
+
+.mt {
+  &-0 { margin-top: 0 !important; }
+  &-xs { margin-top: $spacing-xs !important; }
+  &-sm { margin-top: $spacing-sm !important; }
+  &-md { margin-top: $spacing-md !important; }
+  &-lg { margin-top: $spacing-lg !important; }
+  &-xl { margin-top: $spacing-xl !important; }
+  &-xxl { margin-top: $spacing-xxl !important; }
+  &-auto { margin-top: auto !important; }
+}
+
+.mb {
+  &-0 { margin-bottom: 0 !important; }
+  &-xs { margin-bottom: $spacing-xs !important; }
+  &-sm { margin-bottom: $spacing-sm !important; }
+  &-md { margin-bottom: $spacing-md !important; }
+  &-lg { margin-bottom: $spacing-lg !important; }
+  &-xl { margin-bottom: $spacing-xl !important; }
+  &-xxl { margin-bottom: $spacing-xxl !important; }
+  &-auto { margin-bottom: auto !important; }
+}
+
+.ml {
+  &-0 { margin-left: 0 !important; }
+  &-xs { margin-left: $spacing-xs !important; }
+  &-sm { margin-left: $spacing-sm !important; }
+  &-md { margin-left: $spacing-md !important; }
+  &-lg { margin-left: $spacing-lg !important; }
+  &-xl { margin-left: $spacing-xl !important; }
+  &-xxl { margin-left: $spacing-xxl !important; }
+  &-auto { margin-left: auto !important; }
+}
+
+.mr {
+  &-0 { margin-right: 0 !important; }
+  &-xs { margin-right: $spacing-xs !important; }
+  &-sm { margin-right: $spacing-sm !important; }
+  &-md { margin-right: $spacing-md !important; }
+  &-lg { margin-right: $spacing-lg !important; }
+  &-xl { margin-right: $spacing-xl !important; }
+  &-xxl { margin-right: $spacing-xxl !important; }
+  &-auto { margin-right: auto !important; }
+}
+
+.mx {
+  &-0 { margin-left: 0 !important; margin-right: 0 !important; }
+  &-xs { margin-left: $spacing-xs !important; margin-right: $spacing-xs !important; }
+  &-sm { margin-left: $spacing-sm !important; margin-right: $spacing-sm !important; }
+  &-md { margin-left: $spacing-md !important; margin-right: $spacing-md !important; }
+  &-lg { margin-left: $spacing-lg !important; margin-right: $spacing-lg !important; }
+  &-xl { margin-left: $spacing-xl !important; margin-right: $spacing-xl !important; }
+  &-xxl { margin-left: $spacing-xxl !important; margin-right: $spacing-xxl !important; }
+  &-auto { margin-left: auto !important; margin-right: auto !important; }
+}
+
+.my {
+  &-0 { margin-top: 0 !important; margin-bottom: 0 !important; }
+  &-xs { margin-top: $spacing-xs !important; margin-bottom: $spacing-xs !important; }
+  &-sm { margin-top: $spacing-sm !important; margin-bottom: $spacing-sm !important; }
+  &-md { margin-top: $spacing-md !important; margin-bottom: $spacing-md !important; }
+  &-lg { margin-top: $spacing-lg !important; margin-bottom: $spacing-lg !important; }
+  &-xl { margin-top: $spacing-xl !important; margin-bottom: $spacing-xl !important; }
+  &-xxl { margin-top: $spacing-xxl !important; margin-bottom: $spacing-xxl !important; }
+  &-auto { margin-top: auto !important; margin-bottom: auto !important; }
+}
+
+// TEXT UTILITIES
+// --------------------------------------------------------------------------
+.text {
+  &--left { text-align: left !important; }
+  &--center { text-align: center !important; }
+  &--right { text-align: right !important; }
+  &--justify { text-align: justify !important; }
+  &--xs { font-size: $font-size-xs !important; }
+  &--sm { font-size: $font-size-sm !important; }
+  &--md { font-size: $font-size-md !important; }
+  &--lg { font-size: $font-size-lg !important; }
+  &--xl { font-size: $font-size-xl !important; }
+  &--primary { color: $primary-color !important; }
+  &--secondary { color: $secondary-color !important; }
+  &--white { color: $text-color !important; }
+  &--black { color: $black !important; }
+}
+
+// ACCESSIBILITY UTILITIES
+// --------------------------------------------------------------------------
+.sr-only {
+  @include visually-hidden;
+}
 
 .flex {
   display: flex;

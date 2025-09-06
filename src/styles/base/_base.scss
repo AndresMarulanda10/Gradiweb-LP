@@ -1,0 +1,55 @@
+// ==========================================================================
+// BASE
+// ==========================================================================
+// Basic styles for fundamental HTML elements
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font-family-regular;
+  background-image: url(/assets/background_hover.webp);
+  font-size: $font-size-xs;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  min-height: 100vh;
+  background-color: $background-color;
+  color: $text-color;
+}
+
+a {
+  text-decoration: none;
+  color: unset;
+}
+
+button {
+  font-family: $font-family-bold;
+  font-size: $font-size-lg;
+  color: $text-color;
+  border: none;
+  border-radius: $border-radius;
+  padding: 6px $spacing-lg;
+  height: 72px;
+  min-width: 67px;
+  text-align: center;
+  align-items: center;
+  background-color: $primary-color;
+  cursor: pointer;
+
+  &:hover {
+    transition: transform $transition-duration $transition-easing;
+    transform: translateY(-3px);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+}
+
+// Responsive utilities
+@media (max-width: $mobile-max) {
+  .movil {
+    display: none !important;
+  }
+}
